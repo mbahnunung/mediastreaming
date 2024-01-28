@@ -80,7 +80,7 @@
       <div id="vr">
         <a href="https://atlas.sansar.com/experiences/nickbeardo-4221/rave-party-radio" target="_blank">VR Club </a>
       </div>
-      <div id="mbahnunungonline" >
+      <div id="lunaradio" >
           Loading Player...
       </div>
 </section>
@@ -88,8 +88,8 @@
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/lunaradio.min.js"></script>
 
-   <script>
-$("#mbahnunungonline").lunaradio({
+  <script>
+$("#lunaradio").lunaradio({
 	token: "ZFNoV2JTZGZrZFNWW2EgYWRZ",
 	userinterface: "big",
 	backgroundcolor: "#000000",
@@ -97,21 +97,21 @@ $("#mbahnunungonline").lunaradio({
 	hightlightcolor: "#e5c00d",
 	volume: "100",
 	fontratio: "0.4",
-	radioname: "RBT FM",
-    autoplay: "true",
+	radioname: "ravepartyradio.org",
+  autoplay: "true",
 	scroll: "true",
 	coverimage: "img/smiley_transparent.png",
-	onlycoverimage: "false",
+	onlycoverimage: "true",
 	coverstyle: "circle",
 	usevisualizer: "real",
-	visualizertype: "8",
-	metadatatechnic: "corsproxy",
-	ownmetadataurl: "",
+	visualizertype: "2",
+	metadatatechnic: "ownmetadataurl",
+	ownmetadataurl: "data/latest.txt",
 	fontname: "Orbitron",
 	googlefont: "Orbitron",
-	streamurl: "https://sv.stri.my.id/radio/8360",
+	streamurl: "https://icecast.ravepartyradio.org",
 	streamtype: "icecast2",
-	icecastmountpoint: "/rbtfm",
+	icecastmountpoint: "/ravepartyradio-192.mp3",
 	streamsuffix: " ",
 	debug: "false",
 	usestreamcorsproxy: "false",
@@ -121,4 +121,5 @@ $("#mbahnunungonline").lunaradio({
   displayvisualizericon: "true"
 });
 </script>
+
 </body>
