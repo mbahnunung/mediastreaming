@@ -1,0 +1,125 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name = "yandex-verification" content = "a9ef805765eb146f" />
+  <title>Rave Party Radio</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="msapplication-TileColor" content="#000000">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#000000">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KNSZJT7310"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KNSZJT7310');
+  </script>
+
+</head>
+
+<style>
+  body, html{
+    height: 100%;
+    margin: 0;
+    background-color: black;
+    overflow: hidden; /* Hide scrollbars */
+  }
+  section {
+    width: 100%;
+    height: 80%;
+  }
+  div#chat {
+    text-align: center;
+  }
+  div#vr {
+    text-align: center;
+  }
+  div#lunaradio {
+    width: 100%;
+    height: 100%;
+  }
+  a {
+    text-decoration: none;
+    font-size: 25px;
+    font-family: Orbitron,sans-serif;
+    font-color: #63500b;
+    color: #63500b;
+    display: inline-block;
+    border: 0 solid #63500b;
+    padding: 10px 0;
+  }
+</style>
+
+<body>
+
+  <section id="wrapper">
+      <div id="chat">
+        <a href="https://discord.gg/FM9Yy8Z" target="_blank">Chat Rooms</a>
+      </div>
+      <div id="vr">
+        <a href="https://atlas.sansar.com/experiences/nickbeardo-4221/rave-party-radio" target="_blank">VR Club </a>
+      </div>
+      <div id="lunaradio" >
+          Loading Player...
+      </div>
+</section>
+
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="js/lunaradio.min.js"></script>
+
+  <script>
+$("#lunaradio").lunaradio({
+	token: "ZFNoV2JTZGZrZFNWW2EgYWRZ",
+	userinterface: "big",
+	backgroundcolor: "#000000",
+	fontcolor: "#e5c00d",
+	hightlightcolor: "#e5c00d",
+	volume: "100",
+	fontratio: "0.4",
+	radioname: "ravepartyradio.org",
+  autoplay: "true",
+	scroll: "true",
+	coverimage: "img/smiley_transparent.png",
+	onlycoverimage: "true",
+	coverstyle: "circle",
+	usevisualizer: "real",
+	visualizertype: "2",
+	metadatatechnic: "ownmetadataurl",
+	ownmetadataurl: "data/latest.txt",
+	fontname: "Orbitron",
+	googlefont: "Orbitron",
+	streamurl: "https://icecast.ravepartyradio.org",
+	streamtype: "icecast2",
+	icecastmountpoint: "/ravepartyradio-192.mp3",
+	streamsuffix: " ",
+	debug: "false",
+	usestreamcorsproxy: "false",
+	corsproxy: "",
+	metadatainterval: "5000",
+  displayliveicon: "false",
+  displayvisualizericon: "true"
+});
+</script>
+
+</body>

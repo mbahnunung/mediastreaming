@@ -1,0 +1,65 @@
+version: '2'
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - DEFAULT_HOST=www.ravepartyradio.org
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /etc/nginx/certs
+      - /etc/nginx/vhost.d
+      - /usr/share/nginx/html
+
+  icecast:
+    image: jwilder/whoami
+    ports:
+      - "8001:8000"
+    depends_on:
+      - nginx-proxy
+    environment:
+      - VIRTUAL_HOST=icecast.ravepartyradio.org
+      - VIRTUAL_PORT=8001
+      - LETSENCRYPT_HOST=icecast.ravepartyradio.org
+      - LETSENCRYPT_EMAIL=smithcolina@hotmail.com
+
+  ftp:
+    image: jwilder/whoami
+    ports:
+      - "8002:8000"
+    depends_on:
+      - nginx-proxy
+    environment:
+      - VIRTUAL_HOST=ftp.ravepartyradio.org
+      - VIRTUAL_PORT=8002
+      - LETSENCRYPT_HOST=ftp.ravepartyradio.org
+      - LETSENCRYPT_EMAIL=smithcolina@hotmail.com
+
+  www:
+    image: jwilder/whoami
+    ports:
+      - "8003:8000"
+    depends_on:
+      - nginx-proxy
+    environment:
+      - VIRTUAL_HOST=www.ravepartyradio.org
+      - VIRTUAL_PORT=8003
+      - LETSENCRYPT_HOST=www.ravepartyradio.org
+      - LETSENCRYPT_EMAIL=smithcolina@hotmail.com
+
+  letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    depends_on:
+      - nginx-proxy
+      - icecast
+      - ftp
+      - www
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+

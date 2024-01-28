@@ -1,0 +1,166 @@
+version: '2'
+
+volumes:
+  html:
+  dhparam:
+  acme:
+  vhost:
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+
+services:
+
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8121:8021"
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - dhparam:/etc/nginx/dhparam
+      - acme:/etc/acme.sh
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs:ro
+      - ./logs/nginx:/var/log/nginx
+    networks:
+      - frontend
+      - backend
+
+  acme-companion:
+    image: nginxproxy/acme-companion
+    volumes:
+      - ./certs:/etc/nginx/certs:rw
+      - acme:/etc/acme.sh
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    depends_on:
+      - nginx-proxy
+      - icecast
+      - site
+      - main
+      - admin
+    volumes_from:
+      - nginx-proxy
+    env_file: .env
+    networks:
+      - frontend
+      - backend
+
+  main:
+    image: moul/liquidsoap
+    volumes:
+      - ./config:/config
+      - ./playlists:/playlists
+      - ./data:/data
+      - ./timezone:/etc/localtime:ro
+      - ./logs:/logs
+    command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/main.liq'
+    environment:
+      - HARBOR_PASSWORD
+      - LIVE_PASSWORD
+      - BROADCAST_PORT_5001_TCP_ADDR=broadcast
+      - BROADCAST_PORT_5001_TCP_PORT=5001
+      - VIRTUAL_HOST=${LIVE_HOST}
+      - VIRTUAL_PORT=8022
+      - LETSENCRYPT_HOST=${LIVE_HOST}
+      - LETSENCRYPT_EMAIL
+    env_file: .env
+    links:
+      - broadcast
+    ports:
+      - "8022:5002"
+      - "8023:5001"
+    networks:
+      - backend
+
+  broadcast:
+    image: moul/liquidsoap
+    volumes:
+      - ./config:/config
+      - ./playlists:/playlists
+      - ./timezone:/etc/localtime:ro
+      - ./logs:/logs
+    command: /bin/bash -xc 'env; /supervisor.sh liquidsoap -v --debug /config/broadcast.liq'
+    environment:
+      - HARBOR_PASSWORD
+      - ICECAST_SOURCE_PASSWORD
+      - ICECAST_PORT_8000_TCP_ADDR=icecast
+      - ICECAST_PORT_8000_TCP_PORT=8000
+    env_file: .env
+    links:
+      - icecast
+    ports:
+      - "5000:5000"
+    networks:
+      - backend
+
+  icecast:
+    image: cheekychops/docker-icecast
+    volumes:
+      - ./logs/icecast:/var/log/icecast
+      - ./timezone:/etc/localtime:ro 
+    environment:
+      - VIRTUAL_HOST=${ICECAST_HOST}
+      - VIRTUAL_PORT=8000
+      - LETSENCRYPT_HOST=${ICECAST_HOST}
+      - LETSENCRYPT_EMAIL
+      - ICECAST_SOURCE_PASSWORD
+      - ICECAST_ADMIN_PASSWORD
+      - ICECAST_PASSWORD
+      - ICECAST_RELAY_PASSWORD
+      - ICECAST_ADMIN=smithcolina@hotmail.com
+      - ICECAST_HOSTNAME=${ICECAST_HOST}
+      - ICECAST_LOCATION=London (UK)
+      - ICECAST_MAX_SOURCES=2
+      - ICECAST_MAX_LISTENERS=1000
+      - ICECAST_X_FORWARDED_FOR=*.*.*.*
+      - ICECAST_LOG_LEVEL=3
+      - ICECAST_YP_URL=http://icecast-yp.internet-radio.com
+      - HTTPS_METHOD=noredirect
+    env_file: .env
+    restart: always
+    ports:
+      - "8000:8000"
+    networks:
+      - frontend
+      - backend
+
+  admin:
+    image: php:7.2-apache
+    volumes:
+      - ./timezone:/etc/localtime:ro
+      - ./admin:/var/www/html/
+    environment:
+      - VIRTUAL_HOST=${ADMIN_HOST}
+      - LETSENCRYPT_HOST=${ADMIN_HOST}
+      - LETSENCRYPT_EMAIL
+      - ICECAST_ADMIN_PASSWORD
+      - MAIN_PORT_5000_TCP=tcp://main:5000
+    env_file: .env
+    links:
+      - main
+    networks:
+      - frontend
+      - backend
+
+  site:
+    image: httpd
+    environment:
+      - VIRTUAL_HOST=${SITE_HOST}
+      - LETSENCRYPT_HOST=${SITE_HOST}
+      - LETSENCRYPT_EMAIL
+    env_file: .env
+    volumes:
+      - ./logs/apache2:/private/var/log/apache2
+      - ./site:/usr/local/apache2/htdocs/
+      - ./data:/usr/local/apache2/htdocs/data/
+    networks:
+      - frontend
+      - backend
+
