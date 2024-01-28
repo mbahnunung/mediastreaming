@@ -2,7 +2,7 @@
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
-$data = file_get_contents('http://icecast:8000/status-json.xsl');
+$data = file_get_contents('https://sv.stri.my.id/radio/8360/status-json.xsl');
 $json = json_decode($data, true);
 $title = $json['icestats']['source']['title'];
 $listeners = $json['icestats']['source']['listeners'];
