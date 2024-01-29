@@ -11,14 +11,14 @@ set("server.telnet", false)
 
 description="Rave Party Radio"
 genre="Electronica"
-url="https://ravepartyradio.org"
+url="https://sv.stri.my.id"
 
 # FUNCTIONS
 icecast_out=output.icecast(description=description, genre=genre, url=url)
 output_docker_env.icecast = icecast_out(
-    host=my_getenv("ICECAST_PORT_8000_TCP_ADDR"),
-    port=int_of_string(my_getenv("ICECAST_PORT_8000_TCP_PORT")),
-    password=my_getenv("ICECAST_SOURCE_PASSWORD")
+    host=my_getenv("8360"),
+    port=int_of_string(my_getenv("8360")),
+    password=my_getenv("bintang95602")
 )
 def outputs(encoder, ~mount, input)
     output_docker_env.icecast(encoder, mount=mount, input)
@@ -31,5 +31,5 @@ input=mksafe(input)
 #input=audio_process(input)
 
 # OUTPUTS
-outputs(%mp3(bitrate=192), mount="/ravepartyradio-192.mp3", input)
+outputs(%mp3(bitrate=192), mount="/rbtfm", input)
 
