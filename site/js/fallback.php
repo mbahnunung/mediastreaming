@@ -7,7 +7,6 @@
 // https://www.sodah.de
 /////////////////////////////////////////////////////
 //error_reporting(0);
-
 header('Content-type: text/plain');
 header('Pragma: public'); 
 header('Expires: Sat, 26 Jul 1997 05:00:00 GMT');                  
@@ -38,7 +37,7 @@ function useFileGetContents($sURL) {
 					"User-Agent: Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.102011-10-16 20:23:10\r\n" // i.e. An iPad 
 		)
 	);
-	$contents = @file_get_contents($sURL, false, stream_context_create($options),0, 12000);
+	$contents = file_get_contents($sURL, false, stream_context_create($options),0, 12000);
 	return $contents;
 }
 
