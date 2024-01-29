@@ -82,43 +82,45 @@
   <script src="js/jquery-3.2.1.min.js"></script>
   <script src="js/lunaradio.min.js"></script>
 
-  <script>
-$("#lunaradio").lunaradio({
-	token: "ZFNoV2JTZGZrZFNWW2EgYWRZ",
-	userinterface: "big",
-	backgroundcolor: "#000000",
-	fontcolor: "#e5c00d",
-	hightlightcolor: "#FF0000",
-	volume: "100",
-	fontratio: "0.4",
-	radioname: "RBT FM",
-    autoplay: "true",
-	scroll: "true",
-	coverimage: "img/smiley_transparent.png",
-	onlycoverimage: "false",
-	coverstyle: "circle",
-	usevisualizer: "real",
-	visualizertype: "8",
-	metadatatechnic: "corsproxy",
-	ownmetadataurl: "",
-	fontname: "Orbitron",
-	googlefont: "Orbitron",
-	streamurl: "https://sv.stri.my.id/radio/8360",
-	streamtype: "icecast2",
-	icecastmountpoint: "/rbtfm",
-	streamsuffix: " ",
-	debug: "false",
-	usestreamcorsproxy: "false",
-	corsproxy: "",
-	metadatainterval: "5000", 
-	multicolorvisualizer: "true",
-     color1: "#00FF00",
-     color2: "#ffff00",
-     color3: "#FF1F6F",
-     color4: "#FF1F6F",
-  displayliveicon: "false",
-  displayvisualizericon: "false"
-});
-</script>
+  <script type="text/javascript">
+		$("#jembut").lunaradio({
+            userinterface: "big",
+            backgroundcolor: "rgba(9,15,25,0.5)",
+            fontcolor: "#ffffff",
+            hightlightcolor: "#ef7f1a",
+            fontname: "Orbitron",
+            googlefont: "Orbitron",
+            fontratio: "0.4",
+            radioname: "FM 95.6 MHz",
+            scroll: "true",
+            coverimage: "https://cdn.bintangtenggarafm.com/img/QTrnfVE.png",
+            onlycoverimage: "false",
+            coverstyle: "square",
+            usevisualizer: "real",
+            visualizertype: "8",
+            itunestoken: "1000lIPN",
+            metadatatechnic: "fallback", //fallback (use for zeno)
+            corsproxy: "",
+            usestreamcorsproxy: "false",
+            streamurl: "https://sv.stri.my.id/radio/8360",
+            streamtype: "Icecast2", //soport: zeno, icecast2, shoutcast2
+            idzeno: "r4mpcrfwfzzuv",
+            icecastmountpoint: "/rbtfm",
+            shoutcastpath: "/rbtfm",
+            shoutcastid: "1",
+            metadatainterval: "10000",
+            volume: "100",
+            debug: "false",
+            autoplay: "true",
+            displayliveicon: "false", 
+            visualizeropacity: "1.0",
+            multicolorvisualizer: "true",
+            color1: "#00FF00",
+            color2: "#ffff00",
+            color3: "#FF1F6F",
+            color4: "#FF1F6F", 
+            displayvisualizericon: "false"
+        });
+    </script>
 </body>
 </html>
