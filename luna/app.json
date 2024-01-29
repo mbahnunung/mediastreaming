@@ -1,0 +1,14 @@
+{
+  "name": "luna",
+  "description": "Luna Player",
+  "repository": "https://github.com/RomaniaChat/luna",
+  "keywords": [
+    "node", 
+    "overwatch",
+    "api",
+    "rest",
+    "http",
+    "srv",
+    "express"
+  ]
+}
