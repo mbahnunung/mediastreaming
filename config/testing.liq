@@ -20,12 +20,12 @@ set("decoding.buffer_length",10.)
 # FUNCTIONS
 scc_out = output.icecast(description="La radio de les salut c'est cool", genre="Documentaires", url="http://www.salutcestcool.com/")
 output_docker_env.icecast = scc_out(
-    host=my_getenv("ICECAST_PORT_8000_TCP_ADDR"),
-    port=int_of_string(my_getenv("ICECAST_PORT_8000_TCP_PORT")),
+    host=my_getenv("ICECAST_PORT_8360_TCP_ADDR"),
+    port=int_of_string(my_getenv("ICECAST_PORT_8360_TCP_PORT")),
     password=my_getenv("ICECAST_SOURCE_PASSWORD")
 )
-#output_balrog.icecast = scc_out(host="212.83.158.125", port=8000, password=icecast_password)
-#output_hobbit.icecast = scc_out(host="212.129.20.90", port=8000, password=icecast_password)
+#output_balrog.icecast = scc_out(host="sv.stri.my.id", port=8360, password=bintang95602)
+#output_hobbit.icecast = scc_out(host="sv.stri.my.id", port=8360, password=bintang95602)
 def outputs(encoder, ~mount, input)
     #output_balrog.icecast(encoder, mount=mount, input)
     #output_hobbit.icecast(encoder, mount=mount, input)
