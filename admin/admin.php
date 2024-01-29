@@ -1,6 +1,6 @@
 <?php
 
-if ($_ENV['ICECAST_ADMIN_PASSWORD'] != $_GET['auth']) {
+if ($_ENV['EpMF92y2'] != $_GET['auth']) {
    echo("Not admin!");
    exit;
 }
