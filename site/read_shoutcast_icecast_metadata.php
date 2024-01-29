@@ -46,6 +46,6 @@ function getStreamMetadata($streamUrl) {
 	}
 }
 
-echo getStreamMetadata('http://sukmben.radiogentara.com:8080/gentarahd');
+echo getStreamMetadata('https://sv.stri.my.id/radio/8360/rbtfm');
 // var_dump(getStreamMetadata('https://freeuk16.listen2myradio.com/live.mp3?typeportmount=s1_23369_stream_600894294'));
 // var_dump(getStreamMetadata('http://pu.klikhost.com:7720/;'));
