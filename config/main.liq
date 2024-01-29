@@ -27,7 +27,7 @@ live_rpr = audio_to_stereo(
         [
             ("artist", "$(title)"),
             ("title", "L I V E"),
-            ("comment", "https://ravepartyradio.org")
+            ("comment", "https://sv.stri.my.id")
             ],
         stretch(
             ratio=interactive.float("test", 1.00000),
@@ -48,7 +48,7 @@ live_guest = audio_to_stereo(
         [
             ("artist", "Please stand by for the next live stream"),
             ("title", "and drink some water!"),
-            ("comment", "https://ravepartyradio.org")
+            ("comment", "https://sv.stri.my.id")
             ],
         stretch(
             ratio=interactive.float("test", 1.00000),
