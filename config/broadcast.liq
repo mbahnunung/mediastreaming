@@ -20,7 +20,7 @@ output_docker_env.icecast = icecast_out(
     port=int_of_string(my_getenv("8360")),
     password=my_getenv("bintang95602")
 )
-def outputs(encoder, ~mount, input)
+def outputs(encoder, rbtfm, input)
     output_docker_env.icecast(encoder, mount=mount, input)
 end
 
