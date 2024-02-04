@@ -73,7 +73,7 @@
 </section>
 
   <script src="js/jquery-3.2.1.min.js"></script>
-  <script src="js/lunaradio.min.js"></script>
+  <script src="js/lunaradio.js"></script>
 
   <script type="text/javascript">
 		$("#lunaradio").lunaradio({
@@ -92,7 +92,7 @@
             usevisualizer: "real",
             visualizertype: "8",
             itunestoken: "1000lIPN",
-            metadatatechnic: "stream-icy-meta", //fallback (use for zeno) 
+            metadatatechnic: "corsproxy", //fallback (use for zeno) 
             ownmetadataurl: "../site/read_shoutcast_icecast_metadata.php",
             corsproxy: "",
             usestreamcorsproxy: "false",
